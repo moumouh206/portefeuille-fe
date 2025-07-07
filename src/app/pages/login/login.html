@@ -1,0 +1,55 @@
+<div class="flex items-center justify-center min-h-screen bg-[#f3f4f6]">
+  <div class="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
+    <!-- Logo et Titre -->
+    <div class="text-center">
+      <svg class="w-16 h-16 mx-auto text-[#3DE8CA]" ...>
+        <!-- ... path ... -->
+      </svg>
+      <h2 class="mt-6 text-3xl font-extrabold text-[#1f2937]">
+        Système de Gestion du Portefeuille
+      </h2>
+      <p class="mt-2 text-sm text-[#6b7280]">
+        Veuillez vous connecter à votre compte
+      </p>
+    </div>
+
+    <!-- Formulaire -->
+    <form class="mt-8 space-y-6">
+      <div class="space-y-4 rounded-md">
+        <div>
+          <label for="username" class="sr-only">Nom d'utilisateur</label>
+          <input
+            id="username"
+            name="username"
+            type="text"
+            required
+            class="relative block w-full px-3 py-3 text-[#1f2937] placeholder-[#9ca3af] bg-[#f3f4f6] border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-[#3DE8CA] sm:text-sm"
+            placeholder="Nom d'utilisateur"
+          />
+        </div>
+        <div>
+          <label for="password" class="sr-only">Mot de passe</label>
+          <input
+            id="password"
+            name="password"
+            type="password"
+            required
+            class="relative block w-full px-3 py-3 text-[#1f2937] placeholder-[#9ca3af] bg-[#f3f4f6] border border-transparent rounded-md focus:outline-none focus:ring-2 focus:ring-[#3DE8CA] sm:text-sm"
+            placeholder="Mot de passe"
+          />
+        </div>
+      </div>
+
+      <!-- Bouton de connexion -->
+      <div>
+        <button
+          type="button"
+          [routerLink]="['/dashboard']"
+          class="relative flex justify-center w-full px-4 py-3 text-sm font-medium text-white border border-transparent rounded-md group bg-[#3DE8CA] hover:bg-[#00A88E]"
+        >
+          Se connecter
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

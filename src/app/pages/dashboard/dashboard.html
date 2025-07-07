@@ -1,0 +1,300 @@
+<div class="space-y-8">
+  <!-- Section 1: Header et Actions Rapides -->
+  <div>
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+      <div>
+        <h1 class="text-3xl font-bold text-gray-800">Bienvenue, M. Ferkhi</h1>
+        <p class="mt-1 text-gray-500">
+          Voici un résumé de l'activité du portefeuille aujourd'hui.
+        </p>
+      </div>
+      <!-- Boutons d'Actions Rapides -->
+      <div class="flex items-center gap-3 mt-4 md:mt-0">
+        <button
+          class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path d="M4 4a2 2 0 00-2 2v1h16V6a2 2 0 00-2-2H4z" />
+            <path
+              fill-rule="evenodd"
+              d="M18 9H2v5a2 2 0 002 2h12a2 2 0 002-2V9zM4 13a1 1 0 011-1h1a1 1 0 110 2H5a1 1 0 01-1-1zm5-1a1 1 0 100 2h1a1 1 0 100-2H9z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Paiement Chèque
+        </button>
+        <button
+          class="flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold text-gray-700 transition-colors bg-white border border-gray-200 rounded-lg hover:bg-gray-50"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="w-5 h-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+              clip-rule="evenodd"
+            />
+          </svg>
+          Certifier Chèque
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Indicateurs Clés (KPIs) -->
+  <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-4">
+    <!-- Card 1: Clients Actifs -->
+    <div class="p-6 bg-white rounded-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col">
+          <p class="text-sm font-medium text-gray-500 uppercase">
+            Clients Actifs
+          </p>
+          <span class="mt-1 text-3xl font-bold text-gray-800">1,258</span>
+        </div>
+        <div class="p-3 rounded-full bg-[#BEFFF4]">
+          <svg
+            class="w-6 h-6 text-[#00A88E]"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m-7.5-2.962a3.75 3.75 0 015.965 0m-11.965 0a3.75 3.75 0 015.965 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Card 2: Opérations du Jour -->
+    <div class="p-6 bg-white rounded-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col">
+          <p class="text-sm font-medium text-gray-500 uppercase">
+            Opérations du Jour
+          </p>
+          <span class="mt-1 text-3xl font-bold text-gray-800">32</span>
+        </div>
+        <div class="p-3 rounded-full bg-[#BEFFF4]">
+          <svg
+            class="w-6 h-6 text-[#00A88E]"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 7.5L7.5 3m0 0L12 7.5M7.5 3v13.5m13.5 0L16.5 21m0 0L12 16.5m4.5 4.5V7.5"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Card 3: Solde Total (Exemple) -->
+    <div class="p-6 bg-white rounded-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col">
+          <p class="text-sm font-medium text-gray-500 uppercase">
+            Solde Consolidé
+          </p>
+          <span class="mt-1 text-3xl font-bold text-gray-800">2.45 M DA</span>
+        </div>
+        <div class="p-3 rounded-full bg-[#BEFFF4]">
+          <svg
+            class="w-6 h-6 text-[#00A88E]"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0H21m-9 12.75h5.25m-5.25 0h-4.5m5.25 0V18s0-2.25-2.25-2.25H9.75S7.5 15.75 7.5 18v.75m12-3V9A2.25 2.25 0 0017.25 6.75H9.75A2.25 2.25 0 007.5 9v.75m12 3h-3.375"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <!-- Card 4: Transferts Arrivés -->
+    <div class="p-6 bg-white rounded-lg">
+      <div class="flex items-center justify-between">
+        <div class="flex flex-col">
+          <p class="text-sm font-medium text-gray-500 uppercase">
+            Transferts Arrivés
+          </p>
+          <span class="mt-1 text-3xl font-bold text-gray-800">4</span>
+        </div>
+        <div class="p-3 rounded-full bg-[#BEFFF4]">
+          <svg
+            class="w-6 h-6 text-[#00A88E]"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3v11.25"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 3: Listes de Tâches -->
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-2">
+    <!-- Liste des Chèques à Certifier -->
+    <div class="p-6 bg-white rounded-lg">
+      <h3 class="text-lg font-semibold text-gray-800">
+        Chèques en Attente de Certification
+      </h3>
+      <div class="mt-4 overflow-x-auto">
+        <table class="min-w-full">
+          <tbody class="divide-y divide-gray-200">
+            <!-- Item 1 -->
+            <tr>
+              <td class="py-3 pr-4">
+                <p class="font-semibold text-gray-800">Maitre Belkacem</p>
+                <p class="text-sm text-gray-500">Chèque N° 55432</p>
+              </td>
+              <td class="px-4 py-3 text-right">
+                <p class="font-mono font-semibold text-gray-800">
+                  250,000.00 DA
+                </p>
+                <p class="text-sm text-gray-500">12/08/2024</p>
+              </td>
+              <td class="py-3 pl-4 text-right">
+                <button
+                  class="px-3 py-1 text-sm font-medium text-white rounded-md bg-[#3DE8CA] hover:bg-[#00A88E]"
+                >
+                  Traiter
+                </button>
+              </td>
+            </tr>
+            <!-- Item 2 -->
+            <tr>
+              <td class="py-3 pr-4">
+                <p class="font-semibold text-gray-800">E.P.A. "El Wiam"</p>
+                <p class="text-sm text-gray-500">Chèque N° 88123</p>
+              </td>
+              <td class="px-4 py-3 text-right">
+                <p class="font-mono font-semibold text-gray-800">
+                  75,300.50 DA
+                </p>
+                <p class="text-sm text-gray-500">12/08/2024</p>
+              </td>
+              <td class="py-3 pl-4 text-right">
+                <button
+                  class="px-3 py-1 text-sm font-medium text-white rounded-md bg-[#3DE8CA] hover:bg-[#00A88E]"
+                >
+                  Traiter
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Liste des dernières opérations -->
+    <div class="p-6 bg-white rounded-lg">
+      <h3 class="text-lg font-semibold text-gray-800">
+        Dernières Opérations Enregistrées
+      </h3>
+      <ul class="mt-4 space-y-4">
+        <!-- Opération 1 (Débit) -->
+        <li class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 p-2 mr-3 bg-red-100 rounded-full">
+              <svg
+                class="w-5 h-5 text-red-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 5.414V17a1 1 0 11-2 0V5.414L6.707 7.707a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="font-medium text-gray-800">Paiement Chèque #12345</p>
+              <p class="text-sm text-gray-500">Client EPA-001</p>
+            </div>
+          </div>
+          <p class="font-mono font-semibold text-red-600">- 15,000.00 DA</p>
+        </li>
+        <!-- Opération 2 (Crédit) -->
+        <li class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 p-2 mr-3 bg-green-100 rounded-full">
+              <svg
+                class="w-5 h-5 text-green-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M14.707 12.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 14.586V3a1 1 0 112 0v11.586l2.293-2.293a1 1 0 011.414 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="font-medium text-gray-800">Virement Reçu BA</p>
+              <p class="text-sm text-gray-500">Client Huissier-005</p>
+            </div>
+          </div>
+          <p class="font-mono font-semibold text-green-600">+ 420,000.00 DA</p>
+        </li>
+        <!-- Opération 3 (Rejet) -->
+        <li class="flex items-center justify-between">
+          <div class="flex items-center">
+            <div class="flex-shrink-0 p-2 mr-3 bg-yellow-100 rounded-full">
+              <svg
+                class="w-5 h-5 text-yellow-500"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </div>
+            <div>
+              <p class="font-medium text-gray-800">Rejet Chèque #98765</p>
+              <p class="text-sm text-gray-500">Client BANQUE-002</p>
+            </div>
+          </div>
+          <p class="font-mono font-semibold text-yellow-600">
+            Solde Insuffisant
+          </p>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

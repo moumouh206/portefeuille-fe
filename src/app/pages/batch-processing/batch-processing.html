@@ -1,0 +1,372 @@
+<div class="space-y-8">
+  <!-- Header de la page -->
+  <div>
+    <h1 class="text-3xl font-bold text-gray-800">Gestion des Opérations</h1>
+    <p class="mt-1 text-gray-500">
+      Saisissez les opérations manuelles ou traitez les lots des systèmes
+      externes.
+    </p>
+  </div>
+
+  <!-- Navigation par Onglets (avec le nouvel onglet en premier) -->
+  <div class="bg-white rounded-lg">
+    <div class="border-b border-gray-200">
+      <nav class="flex -mb-px space-x-6 px-6">
+        <button
+          (click)="selectTab('manualEntry')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'manualEntry',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'manualEntry'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Saisie Manuelle
+        </button>
+        <button
+          (click)="selectTab('telecompensation')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'telecompensation',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'telecompensation'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Télécompensation (BA)
+        </button>
+        <button
+          (click)="selectTab('transfers')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'transfers',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'transfers'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Transferts Arrivés
+        </button>
+        <!-- Onglet régies masqué pour simplifier, mais la structure est là -->
+      </nav>
+    </div>
+
+    <!-- Contenu des Onglets -->
+    <div class="p-6">
+      <!-- Onglet: Saisie Manuelle -->
+      <div *ngIf="activeTab === 'manualEntry'" class="space-y-6">
+        <!-- Formulaire de Saisie d'Opération -->
+        <div class="p-6 bg-gray-50 rounded-lg">
+          <h2 class="text-xl font-semibold text-gray-800">
+            Nouvelle Opération Manuelle
+          </h2>
+          <form class="grid grid-cols-1 gap-6 mt-4 lg:grid-cols-5">
+            <div class="lg:col-span-1">
+              <label
+                for="flowType"
+                class="block text-sm font-medium text-gray-600"
+                >Flux</label
+              >
+              <select
+                id="flowType"
+                class="w-full px-4 py-2 mt-1 text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+              >
+                <option value="debit">Décaissement (Débit)</option>
+                <option value="credit">Encaissement (Crédit)</option>
+              </select>
+            </div>
+            <div class="lg:col-span-2">
+              <label
+                for="operationType"
+                class="block text-sm font-medium text-gray-600"
+                >Nature de l'Opération</label
+              >
+              <select
+                id="operationType"
+                class="w-full px-4 py-2 mt-1 text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+              >
+                <!-- Options si "Décaissement" est sélectionné -->
+                <option>Paiement par Chèque</option>
+                <option>Retrait Espèces</option>
+                <option>Certification de Chèque</option>
+
+                <!-- Options si "Encaissement" est sélectionné -->
+                <!-- <option>Versement Espèces</option> -->
+                <!-- <option>Virement Manuel</option> -->
+              </select>
+            </div>
+            <div class="lg:col-span-2">
+              <label
+                for="clientSearch"
+                class="block text-sm font-medium text-gray-600"
+                >Compte Client / Général</label
+              >
+              <input
+                type="text"
+                id="clientSearch"
+                placeholder="Rechercher par nom ou N° de compte..."
+                class="w-full px-4 py-2 mt-1 text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+              />
+            </div>
+            <div class="lg:col-span-1">
+              <label
+                for="amount"
+                class="block text-sm font-medium text-gray-600"
+                >Montant (DA)</label
+              >
+              <input
+                type="number"
+                id="amount"
+                placeholder="0.00"
+                class="w-full px-4 py-2 mt-1 font-mono text-right text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+              />
+            </div>
+            <div class="flex items-end lg:col-span-1">
+              <button
+                type="submit"
+                class="w-full px-6 py-2.5 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+              >
+                Valider
+              </button>
+            </div>
+          </form>
+        </div>
+        <!-- Tableau des Opérations du Jour -->
+        <div>
+          <h3 class="text-xl font-semibold text-gray-800 mb-4">
+            Opérations Manuelles du Jour
+          </h3>
+          <div
+            class="overflow-x-auto bg-white border border-gray-200 rounded-lg"
+          >
+            <table class="min-w-full text-sm align-middle">
+              <!-- ... header du tableau ... -->
+              <tbody class="divide-y divide-gray-200">
+                <!-- Opération avec action d'annulation -->
+                <tr>
+                  <td class="px-6 py-4 text-gray-500">14:32</td>
+                  <td class="px-6 py-4 font-semibold text-gray-800">
+                    E.P.A. "El Wiam"
+                  </td>
+                  <td class="px-6 py-4 font-mono text-right text-red-600">
+                    -15,000.00
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span
+                      class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                      >Validé</span
+                    >
+                  </td>
+                  <td class="px-6 py-4 text-sm font-medium text-right">
+                    <button class="text-red-600 hover:underline">
+                      Annuler (`_02`)
+                    </button>
+                  </td>
+                </tr>
+                <!-- Opération déjà annulée -->
+                <tr>
+                  <td class="px-6 py-4 text-gray-400">10:05</td>
+                  <td
+                    class="px-6 py-4 font-semibold text-gray-400 line-through"
+                  >
+                    Maitre Belkacem
+                  </td>
+                  <td class="px-6 py-4 font-mono text-right text-gray-400">
+                    -5,000.00
+                  </td>
+                  <td class="px-6 py-4 text-center">
+                    <span
+                      class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-200 rounded-full"
+                      >Annulé</span
+                    >
+                  </td>
+                  <td class="px-6 py-4 text-sm font-medium text-right">
+                    <span class="text-gray-400">---</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet: Télécompensation (BA) -->
+      <div *ngIf="activeTab === 'telecompensation'" class="space-y-6">
+        <!-- L'interface d'upload et de traitement de lot reste identique -->
+        <!-- ... -->
+        <!-- Ajout d'une section pour les chèques certifiés -->
+        <div class="pt-8 mt-8 border-t border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-800">
+            Régularisation Manuelle de Chèques Certifiés (`PTFLL_02_07`)
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            Liste des chèques certifiés en attente de passage en
+            télécompensation.
+          </p>
+          <div
+            class="overflow-x-auto bg-white border border-gray-200 rounded-lg mt-4"
+          >
+            <table class="min-w-full text-sm align-middle">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                    Client
+                  </th>
+                  <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                    N° Chèque
+                  </th>
+                  <th class="px-6 py-3 font-semibold text-right text-gray-600">
+                    Montant (DA)
+                  </th>
+                  <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                    Date Certification
+                  </th>
+                  <th class="relative px-6 py-3">
+                    <span class="sr-only">Actions</span>
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-200">
+                <tr>
+                  <td class="px-6 py-4 font-semibold text-gray-800">
+                    Banque BDL
+                  </td>
+                  <td class="px-6 py-4 font-mono text-gray-500">998877</td>
+                  <td class="px-6 py-4 font-mono text-right text-gray-800">
+                    1,200,000.00
+                  </td>
+                  <td class="px-6 py-4 text-gray-500">10/08/2024</td>
+                  <td class="px-6 py-4 text-sm font-medium text-right">
+                    <button class="text-[#00A88E] hover:underline">
+                      Régulariser Manuellement
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglets pour Transferts et Régies -->
+      <div *ngIf="activeTab === 'transfers'" class="space-y-6">
+        <h3 class="text-lg font-semibold text-gray-800">
+          Prise en charge des Transferts Arrivés (`PTFLL_02_09`)
+        </h3>
+        <p class="text-sm text-gray-500">
+          Liste des opérations reçues d'autres postes comptables en attente de
+          traitement.
+        </p>
+
+        <!-- Tableau des transferts -->
+        <div class="overflow-x-auto bg-white border border-gray-200 rounded-lg">
+          <table class="min-w-full text-sm align-middle">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                  Provenance
+                </th>
+                <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                  Type
+                </th>
+                <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                  Détail
+                </th>
+                <th class="px-6 py-3 font-semibold text-right text-gray-600">
+                  Montant (DA)
+                </th>
+                <th class="px-6 py-3 font-semibold text-center text-gray-600">
+                  Compte Destinataire
+                </th>
+                <th class="relative px-6 py-3">
+                  <span class="sr-only">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <!-- Ligne 1: Virement à créditer -->
+              <tr>
+                <td class="px-6 py-4">
+                  <p class="font-semibold text-gray-800">Trésorerie de Oran</p>
+                  <p class="text-xs text-gray-500">12/08/2024 - 10:30</p>
+                </td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-2 py-1 text-xs font-medium text-blue-800 bg-blue-100 rounded-md"
+                    >Virement</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-gray-500">Alimentation de compte</td>
+                <td class="px-6 py-4 font-mono text-right text-green-600">
+                  +5,000,000.00
+                </td>
+                <td class="px-6 py-4 font-mono text-center text-gray-800">
+                  403001001-12 (EPA El Wiam)
+                </td>
+                <td class="px-6 py-4 text-sm font-medium text-right">
+                  <button class="text-[#00A88E] hover:underline">
+                    Imputer
+                  </button>
+                </td>
+              </tr>
+              <!-- Ligne 2: Chèque à débiter -->
+              <tr>
+                <td class="px-6 py-4">
+                  <p class="font-semibold text-gray-800">
+                    Trésorerie de Annaba
+                  </p>
+                  <p class="text-xs text-gray-500">11/08/2024 - 15:00</p>
+                </td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-2 py-1 text-xs font-medium text-purple-800 bg-purple-100 rounded-md"
+                    >Chèque</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-gray-500">
+                  Paiement Fournisseur (Chèque N° 887766)
+                </td>
+                <td class="px-6 py-4 font-mono text-right text-red-600">
+                  -85,200.00
+                </td>
+                <td class="px-6 py-4 font-mono text-center text-gray-800">
+                  431010001-01 (Maitre Belkacem)
+                </td>
+                <td class="px-6 py-4 text-sm font-medium text-right">
+                  <button class="text-[#00A88E] hover:underline">
+                    Imputer
+                  </button>
+                </td>
+              </tr>
+              <!-- Ligne 3: Ordre de Paiement (OP) -->
+              <tr>
+                <td class="px-6 py-4">
+                  <p class="font-semibold text-gray-800">
+                    Service Centralisateur
+                  </p>
+                  <p class="text-xs text-gray-500">10/08/2024 - 09:00</p>
+                </td>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-2 py-1 text-xs font-medium text-yellow-800 bg-yellow-100 rounded-md"
+                    >Ordre de Paiement</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-gray-500">Régularisation frais</td>
+                <td class="px-6 py-4 font-mono text-right text-red-600">
+                  -1,500.00
+                </td>
+                <td class="px-6 py-4 font-mono text-center text-gray-800">
+                  403002001-45 (Banque BDL)
+                </td>
+                <td class="px-6 py-4 text-sm font-medium text-right">
+                  <button class="text-[#00A88E] hover:underline">
+                    Imputer
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

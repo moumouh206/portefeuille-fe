@@ -1,0 +1,713 @@
+<!-- src/app/pages/client-details/client-details.component.html -->
+<div class="space-y-6">
+  <!-- Section 1: En-tête du Client et Actions Principales -->
+  <div class="p-6 bg-white rounded-lg">
+    <div class="flex flex-col md:flex-row md:items-start md:justify-between">
+      <!-- Infos Client -->
+      <div class="flex items-center">
+        <div class="flex-shrink-0 w-16 h-16">
+          <span
+            class="flex items-center justify-center w-full h-full text-3xl font-bold text-blue-600 bg-blue-100 rounded-full"
+            >E</span
+          >
+        </div>
+        <div class="ml-4">
+          <div class="flex items-center gap-3">
+            <h1 class="text-3xl font-bold text-gray-800">E.P.A. "El Wiam"</h1>
+            <span
+              class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+              >Actif</span
+            >
+          </div>
+          <p class="mt-1 font-mono text-gray-500">Compte N° 403001001-12</p>
+        </div>
+      </div>
+      <!-- Boutons d'Actions -->
+      <div class="flex items-center gap-2 mt-4 md:mt-0 flex-wrap">
+        <button
+          (click)="openModal('block')"
+          class="px-3 py-1.5 text-sm font-medium text-yellow-800 transition-colors bg-yellow-100 rounded-lg hover:bg-yellow-200"
+        >
+          Bloquer le compte
+        </button>
+        <!-- Modale pour Bloquer le Compte -->
+        <div
+          *ngIf="isBlockModalOpen"
+          class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+          (click)="closeModals()"
+        >
+          <div
+            class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl"
+            (click)="$event.stopPropagation()"
+          >
+            <div class="flex items-center justify-between">
+              <h3 class="text-lg font-bold text-gray-800">Bloquer le Compte</h3>
+              <button
+                (click)="closeModals()"
+                class="p-1 text-gray-500 rounded-full hover:bg-gray-200"
+              >
+                ×
+              </button>
+            </div>
+            <div class="mt-4">
+              <p class="text-sm text-gray-600">
+                Vous êtes sur le point de bloquer toutes les opérations de débit
+                pour le client <span class="font-bold">E.P.A. "El Wiam"</span>.
+                Veuillez confirmer cette action.
+              </p>
+              <div class="mt-4">
+                <label
+                  for="blockReason"
+                  class="block text-sm font-medium text-gray-600"
+                  >Motif du blocage (optionnel)</label
+                >
+                <textarea
+                  id="blockReason"
+                  rows="2"
+                  class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+                ></textarea>
+              </div>
+            </div>
+            <div class="flex justify-end gap-4 mt-6">
+              <button
+                (click)="closeModals()"
+                class="px-4 py-2 font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100"
+              >
+                Annuler
+              </button>
+              <button
+                class="px-4 py-2 font-semibold text-white bg-yellow-500 rounded-lg hover:bg-yellow-600"
+              >
+                Confirmer le Blocage
+              </button>
+            </div>
+          </div>
+        </div>
+        <button
+          class="px-3 py-1.5 text-sm font-medium text-red-800 transition-colors bg-red-100 rounded-lg hover:bg-red-200"
+        >
+          Solder le compte
+        </button>
+        <button
+          class="px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+        >
+          Nouvelle Opération
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Section 2: Navigation par Onglets -->
+  <div class="bg-white rounded-lg">
+    <div class="border-b border-gray-200">
+      <nav class="flex -mb-px space-x-6 px-6">
+        <button
+          (click)="selectTab('info')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'info',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'info'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Informations Générales
+        </button>
+        <button
+          (click)="selectTab('history')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'history',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'history'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Historique des Opérations
+        </button>
+        <button
+          (click)="selectTab('checkbooks')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'checkbooks',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'checkbooks'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Carnets de Chèques
+        </button>
+        <button
+          (click)="selectTab('actions')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'actions',
+            'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
+              activeTab !== 'actions'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Actions Avancées
+        </button>
+      </nav>
+    </div>
+
+    <!-- Contenu des Onglets -->
+    <div class="p-6">
+      <!-- Onglet: Informations Générales -->
+      <div
+        *ngIf="activeTab === 'info'"
+        class="grid grid-cols-1 gap-8 md:grid-cols-3"
+      >
+        <!-- Colonne 1: Détails du Compte -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-800">Détails du Compte</h3>
+          <dl class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Date d'ouverture:</dt>
+              <dd class="font-medium text-gray-800">12/01/2023</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Forme Juridique:</dt>
+              <dd class="font-medium text-gray-800">EPA non rattaché</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Nature Juridique:</dt>
+              <dd class="font-medium text-gray-800">Personne Morale</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Signatures Autorisées:</dt>
+              <dd class="font-medium text-gray-800">2</dd>
+            </div>
+          </dl>
+        </div>
+        <!-- Colonne 2: Détails du Client -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-800">Détails du Client</h3>
+          <dl class="space-y-2 text-sm">
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Adresse:</dt>
+              <dd class="font-medium text-gray-800 text-right">
+                Cité 1000 Logements, Alger
+              </dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-gray-500">Téléphone:</dt>
+              <dd class="font-medium text-gray-800">021 55 66 77</dd>
+            </div>
+            <div class="flex justify-between">
+              <dt class="text-gray-500">N.I.S:</dt>
+              <dd class="font-medium text-gray-800">123456789012345</dd>
+            </div>
+          </dl>
+        </div>
+        <!-- Colonne 3: Spécimen de Signature -->
+        <div class="space-y-4">
+          <h3 class="text-lg font-semibold text-gray-800">
+            Spécimen de Signature
+          </h3>
+          <div class="p-2 border border-gray-200 rounded-lg">
+            <img
+              src="https://via.placeholder.com/300x150.png?text=Spécimen+de+Signature"
+              alt="Spécimen de signature"
+              class="rounded-md"
+            />
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet: Historique des Opérations -->
+      <div *ngIf="activeTab === 'history'">
+        <h3 class="text-lg font-semibold text-gray-800 mb-4">
+          Historique des Opérations
+        </h3>
+        <table class="min-w-full text-sm align-middle">
+          <thead class="bg-gray-50">
+            <tr>
+              <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                Date
+              </th>
+              <th class="px-6 py-3 font-semibold text-left text-gray-600">
+                Libellé
+              </th>
+              <th class="px-6 py-3 font-semibold text-right text-gray-600">
+                Débit
+              </th>
+              <th class="px-6 py-3 font-semibold text-right text-gray-600">
+                Crédit
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <tr>
+              <td class="px-6 py-4 text-gray-500">12/08/2024</td>
+              <td class="px-6 py-4 font-medium text-gray-800">
+                Paiement Chèque #12345
+              </td>
+              <td class="px-6 py-4 font-mono text-red-600 text-right">
+                -15,000.00
+              </td>
+              <td class="px-6 py-4"></td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4 text-gray-500">11/08/2024</td>
+              <td class="px-6 py-4 font-medium text-gray-800">
+                Virement Reçu BA
+              </td>
+              <td class="px-6 py-4"></td>
+              <td class="px-6 py-4 font-mono text-green-600 text-right">
+                +420,000.00
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Onglet: Carnets de Chèques -->
+      <!-- Onglet: Carnets de Chèques -->
+      <div *ngIf="activeTab === 'checkbooks'" class="space-y-6">
+        <!-- Header de l'onglet et Actions -->
+        <div
+          class="flex flex-col md:flex-row md:items-center md:justify-between"
+        >
+          <h3 class="text-lg font-semibold text-gray-800">
+            Gestion des Carnets de Chèques
+          </h3>
+          <div class="flex items-center gap-3 mt-4 md:mt-0">
+            <button
+              (click)="openModal('oppose')"
+              class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-yellow-800 transition-colors bg-yellow-100 rounded-lg hover:bg-yellow-200"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M13.477 14.89A6 6 0 015.11 6.524l8.367 8.368zm1.414-1.414L6.524 5.11a6 6 0 018.367 8.367zM18 10a8 8 0 11-16 0 8 8 0 0116 0z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              Mettre en Opposition
+            </button>
+            <button
+              (click)="openModal('remise')"
+              class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="w-5 h-5"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M3 3a1 1 0 011-1h12a1 1 0 011 1v3a1 1 0 01-.293.707L12 11.414V15a1 1 0 01-.293.707l-2 2A1 1 0 018 17v-5.586L3.293 6.707A1 1 0 013 6V3z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+              Remettre un Carnet
+            </button>
+            <!-- Modale pour Remettre un Carnet -->
+            <div
+              *ngIf="isRemiseModalOpen"
+              class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+              (click)="closeModals()"
+            >
+              <div
+                class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl"
+                (click)="$event.stopPropagation()"
+              >
+                <h3 class="text-lg font-bold text-gray-800">
+                  Remettre un Carnet de Chèques
+                </h3>
+                <p class="mt-2 text-sm text-gray-600">
+                  Sélectionnez un lot de carnets disponibles en stock.
+                </p>
+                <div class="mt-4 space-y-4">
+                  <div>
+                    <label
+                      for="checkbookBatch"
+                      class="block text-sm font-medium text-gray-600"
+                      >Lot de carnets disponibles</label
+                    >
+                    <select
+                      id="checkbookBatch"
+                      class="w-full px-4 py-2 mt-1 ..."
+                    >
+                      <option>Série : 1234501 - 1234700 (10 restants)</option>
+                      <option>Série : 1234301 - 1234500 (10 restants)</option>
+                    </select>
+                  </div>
+                  <div>
+                    <p class="text-sm text-gray-600">
+                      Le prochain carnet disponible de cette série (<span
+                        class="font-mono font-bold"
+                        >1234501-1234525</span
+                      >) sera attribué à ce client.
+                    </p>
+                  </div>
+                </div>
+                <div class="flex justify-end gap-4 mt-6">
+                  <button
+                    (click)="closeModals()"
+                    class="px-4 py-2 font-semibold ..."
+                  >
+                    Annuler
+                  </button>
+                  <button
+                    class="px-4 py-2 font-semibold text-white bg-[#3DE8CA] rounded-lg hover:bg-[#00A88E]"
+                  >
+                    Confirmer la Remise
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tableau des carnets de chèques -->
+        <div class="overflow-x-auto border border-gray-200 rounded-lg">
+          <table class="min-w-full text-sm align-middle">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-6 py-3 font-semibold text-left text-gray-600"
+                >
+                  Série de Chèques
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 font-semibold text-left text-gray-600"
+                >
+                  Date de Remise
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-3 font-semibold text-center text-gray-600"
+                >
+                  Statut
+                </th>
+                <th scope="col" class="relative px-6 py-3">
+                  <span class="sr-only">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <!-- Ligne 1: Carnet Actif -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <p class="font-mono font-semibold text-gray-800">
+                    1234501 - 1234525
+                  </p>
+                </td>
+                <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                  05/04/2024
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                  >
+                    <span class="w-2 h-2 bg-green-500 rounded-full"></span>
+                    En cours d'utilisation
+                  </span>
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <button class="text-[#00A88E] hover:underline">
+                    Déclarer opposition
+                  </button>
+                </td>
+              </tr>
+
+              <!-- Ligne 2: Carnet Épuisé -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <p class="font-mono font-semibold text-gray-500">
+                    1234476 - 1234500
+                  </p>
+                </td>
+                <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                  10/01/2024
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-200 rounded-full"
+                  >
+                    <span class="w-2 h-2 bg-gray-500 rounded-full"></span>
+                    Épuisé
+                  </span>
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <!-- Aucune action pour un carnet épuisé -->
+                </td>
+              </tr>
+
+              <!-- Ligne 3: Carnet en Opposition -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <p class="font-mono font-semibold text-red-600 line-through">
+                    1234451 - 1234475
+                  </p>
+                </td>
+                <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                  01/10/2023
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex items-center gap-1.5 px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full"
+                  >
+                    <span class="w-2 h-2 bg-red-500 rounded-full"></span>
+                    Opposition totale
+                  </span>
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <button class="text-gray-500 cursor-not-allowed">
+                    Déjà en opposition
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Section: Commande de nouveaux carnets -->
+        <div class="pt-6 border-t border-gray-200">
+          <h3 class="text-lg font-semibold text-gray-800">
+            Commander de Nouveaux Carnets
+          </h3>
+          <p class="mt-1 text-sm text-gray-500">
+            Lancer une nouvelle commande de carnets pour ce client.
+          </p>
+          <div class="flex items-end gap-4 mt-4">
+            <div>
+              <label
+                for="quantity"
+                class="block text-sm font-medium text-gray-600"
+                >Quantité de carnets</label
+              >
+              <input
+                type="number"
+                id="quantity"
+                value="1"
+                class="w-32 px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+              />
+            </div>
+            <button
+              class="px-6 py-2.5 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+            >
+              Lancer la Commande
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Onglet: Actions Avancées -->
+      <div *ngIf="activeTab === 'actions'" class="space-y-8">
+        <!-- Sous-section: Blocage et Opposition -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">
+            Blocage et Opposition
+          </h3>
+          <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
+            <!-- Blocage du compte entier -->
+            <div class="p-4 space-y-3 bg-gray-50 rounded-lg">
+              <p class="font-medium text-gray-700">
+                Blocage du Compte (`PTFLL_01_12`)
+              </p>
+              <p class="text-sm text-gray-500">
+                Empêche toute opération de débit sur ce compte.
+              </p>
+              <button
+                (click)="openModal('block')"
+                class="w-full px-4 py-2 text-sm font-medium text-yellow-800 bg-yellow-200 rounded-lg hover:bg-yellow-300"
+              >
+                Bloquer le Compte
+              </button>
+              <!-- Alternative pour un compte déjà bloqué -->
+              <!-- <button class="w-full px-4 py-2 text-sm font-medium text-blue-800 bg-blue-200 rounded-lg hover:bg-blue-300">Débloquer le Compte</button> -->
+            </div>
+            <!-- Opposition sur compte -->
+            <div class="p-4 space-y-3 bg-gray-50 rounded-lg">
+              <p class="font-medium text-gray-700">
+                Opposition sur Compte (`PTFLL_01_10`)
+              </p>
+              <p class="text-sm text-gray-500">
+                Enregistre une opposition générale (ex: légale).
+              </p>
+              <button
+                (click)="openModal('oppose')"
+                class="w-full px-4 py-2 text-sm font-medium text-yellow-800 bg-yellow-200 rounded-lg hover:bg-yellow-300"
+              >
+                Mettre en Opposition
+              </button>
+              <!-- Modale pour Mettre en Opposition un Chéquier -->
+              <div
+                *ngIf="isOpposeModalOpen"
+                class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+                (click)="closeModals()"
+              >
+                <div
+                  class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl"
+                  (click)="$event.stopPropagation()"
+                >
+                  <h3 class="text-lg font-bold text-gray-800">
+                    Mettre un Chéquier en Opposition
+                  </h3>
+                  <p class="mt-2 text-sm text-gray-600">
+                    Sélectionnez le type d'opposition et précisez les détails.
+                  </p>
+                  <div class="mt-4 space-y-4">
+                    <div>
+                      <label
+                        for="opposeType"
+                        class="block text-sm font-medium text-gray-600"
+                        >Type d'opposition</label
+                      >
+                      <select id="opposeType" class="w-full px-4 py-2 mt-1 ...">
+                        <option>Opposition sur carnet complet</option>
+                        <option>Opposition sur un chèque spécifique</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label
+                        for="checkNumberOppose"
+                        class="block text-sm font-medium text-gray-600"
+                        >N° du premier chèque concerné</label
+                      >
+                      <input
+                        type="text"
+                        id="checkNumberOppose"
+                        class="w-full px-4 py-2 mt-1 ..."
+                      />
+                    </div>
+                  </div>
+                  <div class="flex justify-end gap-4 mt-6">
+                    <button
+                      (click)="closeModals()"
+                      class="px-4 py-2 font-semibold ..."
+                    >
+                      Annuler
+                    </button>
+                    <button
+                      class="px-4 py-2 font-semibold text-white bg-red-500 rounded-lg hover:bg-red-600"
+                    >
+                      Confirmer l'Opposition
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sous-section: Blocage de Montant Spécifique -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">
+            Blocage de Dépense Spécifique (`PTFLL_01_14`)
+          </h3>
+          <div class="p-4 mt-4 space-y-3 bg-gray-50 rounded-lg">
+            <p class="text-sm text-gray-500">
+              Réserve une somme spécifique sur le compte sans le bloquer
+              entièrement. Utile pour les saisies-arrêts sur salaire, etc.
+            </p>
+            <form class="flex items-end gap-4">
+              <div class="flex-grow">
+                <label
+                  for="blockAmount"
+                  class="block text-sm font-medium text-gray-600"
+                  >Montant à bloquer (DA)</label
+                >
+                <input
+                  type="number"
+                  id="blockAmount"
+                  placeholder="0.00"
+                  class="w-full px-4 py-2 mt-1 font-mono text-right text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+                />
+              </div>
+              <button
+                type="submit"
+                class="px-4 py-2 font-medium text-white rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+              >
+                Bloquer Montant
+              </button>
+            </form>
+            <!-- Affichage des montants déjà bloqués -->
+            <div class="pt-4 mt-4 border-t border-gray-200">
+              <p class="font-medium text-gray-700">
+                Montants actuellement bloqués:
+              </p>
+              <ul class="mt-2 text-sm list-disc list-inside">
+                <li class="flex justify-between">
+                  <span
+                    >Saisie-arrêt N°123:
+                    <span class="font-mono">50,000.00 DA</span></span
+                  >
+                  <button class="text-red-500 hover:underline">
+                    Débloquer
+                  </button>
+                </li>
+                <li class="flex justify-between">
+                  <span
+                    >Provision Loyer N°456:
+                    <span class="font-mono">25,000.00 DA</span></span
+                  >
+                  <button class="text-red-500 hover:underline">
+                    Débloquer
+                  </button>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sous-section: Zone de Danger -->
+        <div>
+          <h3 class="text-lg font-semibold text-gray-800">Zone de Danger</h3>
+          <div
+            class="p-6 mt-4 border-2 border-red-200 border-dashed rounded-lg"
+          >
+            <h4 class="font-bold text-red-700">Actions Irréversibles</h4>
+            <div class="grid grid-cols-1 gap-6 mt-4 md:grid-cols-2">
+              <!-- Solder le compte -->
+              <div class="space-y-2">
+                <p class="font-medium text-gray-700">
+                  Solder le Compte (`PTFLL_01_16`)
+                </p>
+                <p class="text-sm text-gray-500">
+                  Met le solde du compte à zéro. Prérequis pour une annulation.
+                </p>
+                <button
+                  class="w-full px-4 py-2 text-sm font-medium text-red-800 bg-red-100 rounded-lg hover:bg-red-200"
+                >
+                  Solder le Compte
+                </button>
+              </div>
+              <!-- Annuler le compte -->
+              <div class="space-y-2">
+                <p class="font-medium text-gray-700">
+                  Annuler le Compte (`PTFLL_01_02`)
+                </p>
+                <p class="text-sm text-gray-500">
+                  Clôture définitivement le compte. Le compte doit être soldé au
+                  préalable.
+                </p>
+                <button
+                  class="w-full px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg cursor-not-allowed"
+                  disabled
+                >
+                  Annuler (Compte non soldé)
+                </button>
+                <!-- <button class="w-full px-4 py-2 text-sm font-medium text-red-800 bg-red-100 rounded-lg hover:bg-red-200">Annuler le Compte</button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

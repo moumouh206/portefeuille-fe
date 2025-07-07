@@ -1,0 +1,284 @@
+<!-- src/app/pages/client-list/client-list.component.html -->
+<div class="space-y-6">
+  <!-- Header de la page -->
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-gray-800">Gestion des Clients</h1>
+      <p class="mt-1 text-gray-500">
+        Consultez, recherchez et gérez les comptes de vos clients.
+      </p>
+    </div>
+    <a
+      [routerLink]="['/clients/nouveau']"
+      class="flex items-center gap-2 px-4 py-2 mt-4 font-semibold text-white transition-colors rounded-lg md:mt-0 bg-[#3DE8CA] hover:bg-[#00A88E]"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+          clip-rule="evenodd"
+        />
+      </svg>
+      <span>Nouveau Client</span>
+    </a>
+  </div>
+
+  <!-- Barre de recherche et filtres -->
+  <div class="p-4 bg-white rounded-lg">
+    <div class="grid items-center gap-4 md:grid-cols-3">
+      <!-- Champ de recherche -->
+      <div class="relative md:col-span-2">
+        <div
+          class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none"
+        >
+          <svg
+            class="w-5 h-5 text-gray-400"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z"
+              clip-rule="evenodd"
+            />
+          </svg>
+        </div>
+        <input
+          type="text"
+          placeholder="Rechercher par nom, N° de compte, type..."
+          class="block w-full py-2 pl-10 pr-3 text-gray-800 placeholder-gray-400 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+      </div>
+      <!-- Filtre par statut -->
+      <div>
+        <select
+          class="block w-full py-2 pl-3 pr-10 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        >
+          <option>Tous les statuts</option>
+          <option>Actif</option>
+          <option>Bloqué</option>
+          <option>Soldé</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tableau des clients -->
+  <div class="overflow-x-auto bg-white rounded-lg">
+    <table class="min-w-full text-sm align-middle">
+      <!-- En-tête du tableau -->
+      <thead class="bg-gray-50">
+        <tr>
+          <th
+            scope="col"
+            class="px-6 py-4 font-semibold text-left text-gray-600"
+          >
+            Client
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-semibold text-left text-gray-600"
+          >
+            Type de Compte
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-semibold text-left text-gray-600"
+          >
+            Date d'Ouverture
+          </th>
+          <th
+            scope="col"
+            class="px-6 py-4 font-semibold text-left text-gray-600"
+          >
+            Statut
+          </th>
+          <th scope="col" class="relative px-6 py-4">
+            <span class="sr-only">Actions</span>
+          </th>
+        </tr>
+      </thead>
+      <!-- Corps du tableau -->
+      <tbody class="divide-y divide-gray-200">
+        <!-- Ligne de données 1 -->
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 w-10 h-10">
+                <!-- Avatar pour EPA -->
+                <span
+                  class="flex items-center justify-center w-full h-full font-bold text-blue-600 bg-blue-100 rounded-full"
+                  >E</span
+                >
+              </div>
+              <div class="ml-4">
+                <div class="font-semibold text-gray-800">E.P.A. "El Wiam"</div>
+                <div class="text-gray-500">403001001-12</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+            EPA non rattaché
+          </td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">12/01/2023</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span
+              class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+              >Actif</span
+            >
+          </td>
+          <td
+            class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+          >
+            <a
+              [routerLink]="['/clients', '1']"
+              class="text-[#00A88E] hover:underline"
+              >Voir Détails</a
+            >
+          </td>
+        </tr>
+
+        <!-- Ligne de données 2 -->
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 w-10 h-10">
+                <!-- Avatar pour Notaire -->
+                <span
+                  class="flex items-center justify-center w-full h-full font-bold text-purple-600 bg-purple-100 rounded-full"
+                  >N</span
+                >
+              </div>
+              <div class="ml-4">
+                <div class="font-semibold text-gray-800">Maitre Belkacem</div>
+                <div class="text-gray-500">431010001-01</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">Notaire</td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">05/03/2022</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span
+              class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+              >Actif</span
+            >
+          </td>
+          <td
+            class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+          >
+            <a
+              [routerLink]="['/clients', '2']"
+              class="text-[#00A88E] hover:underline"
+              >Voir Détails</a
+            >
+          </td>
+        </tr>
+
+        <!-- Ligne de données 3 -->
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 w-10 h-10">
+                <!-- Avatar pour Banque -->
+                <span
+                  class="flex items-center justify-center w-full h-full font-bold text-indigo-600 bg-indigo-100 rounded-full"
+                  >B</span
+                >
+              </div>
+              <div class="ml-4">
+                <div class="font-semibold text-gray-800">
+                  Banque BDL - Agence 152
+                </div>
+                <div class="text-gray-500">403002001-45</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">Banque</td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">18/09/2021</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span
+              class="inline-flex px-2 text-xs font-semibold leading-5 text-yellow-800 bg-yellow-100 rounded-full"
+              >Bloqué</span
+            >
+          </td>
+          <td
+            class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+          >
+            <a
+              [routerLink]="['/clients', '3']"
+              class="text-[#00A88E] hover:underline"
+              >Voir Détails</a
+            >
+          </td>
+        </tr>
+
+        <!-- Ligne de données 4 -->
+        <tr>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <div class="flex items-center">
+              <div class="flex-shrink-0 w-10 h-10">
+                <!-- Avatar pour Particulier -->
+                <span
+                  class="flex items-center justify-center w-full h-full font-bold text-pink-600 bg-pink-100 rounded-full"
+                  >P</span
+                >
+              </div>
+              <div class="ml-4">
+                <div class="font-semibold text-gray-800">Ali Benali</div>
+                <div class="text-gray-500">FOND-PART-883</div>
+              </div>
+            </div>
+          </td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+            Fonds Particulier
+          </td>
+          <td class="px-6 py-4 text-gray-500 whitespace-nowrap">22/06/2024</td>
+          <td class="px-6 py-4 whitespace-nowrap">
+            <span
+              class="inline-flex px-2 text-xs font-semibold leading-5 text-red-800 bg-red-100 rounded-full"
+              >Soldé</span
+            >
+          </td>
+          <td
+            class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+          >
+            <a
+              [routerLink]="['/clients', '4']"
+              class="text-[#00A88E] hover:underline"
+              >Voir Détails</a
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pagination -->
+  <div
+    class="flex items-center justify-between px-4 py-3 bg-white border-t border-gray-200 rounded-b-lg"
+  >
+    <p class="text-sm text-gray-500">
+      Affiche de <span class="font-medium">1</span> à
+      <span class="font-medium">10</span> sur
+      <span class="font-medium">45</span> résultats
+    </p>
+    <div class="flex items-center gap-2">
+      <button
+        class="px-3 py-1.5 text-sm font-medium text-gray-600 transition-colors bg-white border border-gray-300 rounded-lg hover:bg-gray-50"
+      >
+        Précédent
+      </button>
+      <button
+        class="px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+      >
+        Suivant
+      </button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,511 @@
+<div class="space-y-8">
+  <!-- Header de la page -->
+  <div>
+    <h1 class="text-3xl font-bold text-gray-800">Administration</h1>
+    <p class="mt-1 text-gray-500">
+      Gérez les utilisateurs, les rôles et les permissions d'accès au système.
+    </p>
+  </div>
+
+  <!-- Navigation par Onglets -->
+  <div class="bg-white rounded-lg">
+    <div class="border-b border-gray-200">
+      <nav class="flex -mb-px space-x-6 px-6">
+        <button
+          (click)="selectTab('users')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'users',
+            'border-transparent text-gray-500 hover:text-gray-700':
+              activeTab !== 'users'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Gestion des Utilisateurs
+        </button>
+        <button
+          (click)="selectTab('roles')"
+          [ngClass]="{
+            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'roles',
+            'border-transparent text-gray-500 hover:text-gray-700':
+              activeTab !== 'roles'
+          }"
+          class="px-1 py-4 text-sm font-medium whitespace-nowrap border-b-2"
+        >
+          Rôles et Permissions
+        </button>
+      </nav>
+    </div>
+
+    <div class="p-6">
+      <!-- ######### Onglet: Gestion des Utilisateurs ######### -->
+      <div *ngIf="activeTab === 'users'" class="space-y-6">
+        <div class="flex justify-end">
+          <button
+            (click)="openModal('user')"
+            class="flex items-center gap-2 px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 11a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1v-1z"
+              />
+            </svg>
+            <span>Inviter un Utilisateur</span>
+          </button>
+        </div>
+        <div class="overflow-x-auto bg-white border border-gray-200 rounded-lg">
+          <!-- ######## DÉBUT DU CODE CORRIGÉ ######## -->
+          <table class="min-w-full text-sm align-middle">
+            <thead class="bg-gray-50">
+              <tr>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-semibold text-left text-gray-600"
+                >
+                  Nom de l'Utilisateur
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-semibold text-left text-gray-600"
+                >
+                  Email
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-semibold text-left text-gray-600"
+                >
+                  Rôle
+                </th>
+                <th
+                  scope="col"
+                  class="px-6 py-4 font-semibold text-center text-gray-600"
+                >
+                  Statut
+                </th>
+                <th scope="col" class="relative px-6 py-4">
+                  <span class="sr-only">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <!-- Ligne 1: Administrateur -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="relative flex-shrink-0 w-10 h-10">
+                      <span
+                        class="flex items-center justify-center w-full h-full text-xl font-semibold text-white bg-[#3DE8CA] rounded-full"
+                        >MF</span
+                      >
+                    </div>
+                    <div class="ml-4">
+                      <div class="font-semibold text-gray-800">
+                        M. FERKHI Mouloud
+                      </div>
+                      <div class="text-gray-500">Trésorier de la Wilaya</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                  m.ferkhi&#64;tresor.dz
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 py-1 text-xs font-bold leading-none text-red-100 bg-red-600 rounded-full"
+                    >Administrateur</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                    >Actif</span
+                  >
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <button
+                    (click)="openModal('user')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Modifier
+                  </button>
+                </td>
+              </tr>
+              <!-- Ligne 2: Chef de Service -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="relative flex-shrink-0 w-10 h-10">
+                      <span
+                        class="flex items-center justify-center w-full h-full text-xl font-semibold text-white bg-blue-500 rounded-full"
+                        >AB</span
+                      >
+                    </div>
+                    <div class="ml-4">
+                      <div class="font-semibold text-gray-800">
+                        Amina Benaissa
+                      </div>
+                      <div class="text-gray-500">Chef de Bureau</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                  a.benaissa&#64;tresor.dz
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 py-1 text-xs font-bold leading-none text-blue-100 bg-blue-600 rounded-full"
+                    >Chef de Service</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                    >Actif</span
+                  >
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <button
+                    (click)="openModal('user')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Modifier
+                  </button>
+                </td>
+              </tr>
+              <!-- Ligne 3: Agent Portefeuille -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center">
+                    <div class="relative flex-shrink-0 w-10 h-10">
+                      <span
+                        class="flex items-center justify-center w-full h-full text-xl font-semibold text-white bg-gray-500 rounded-full"
+                        >KS</span
+                      >
+                    </div>
+                    <div class="ml-4">
+                      <div class="font-semibold text-gray-800">
+                        Karim Saidani
+                      </div>
+                      <div class="text-gray-500">Agent Portefeuille</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+                  k.saidani&#64;tresor.dz
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 py-1 text-xs font-bold leading-none text-gray-100 bg-gray-600 rounded-full"
+                    >Agent</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                    >Actif</span
+                  >
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <button
+                    (click)="openModal('user')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Modifier
+                  </button>
+                </td>
+              </tr>
+              <!-- Ligne 4: Utilisateur Désactivé -->
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <div class="flex items-center opacity-60">
+                    <div class="relative flex-shrink-0 w-10 h-10">
+                      <span
+                        class="flex items-center justify-center w-full h-full text-xl font-semibold text-white bg-gray-400 rounded-full"
+                        >SL</span
+                      >
+                    </div>
+                    <div class="ml-4">
+                      <div class="font-semibold text-gray-500">
+                        Samir Lamari
+                      </div>
+                      <div class="text-gray-400">Ancien Agent</div>
+                    </div>
+                  </div>
+                </td>
+                <td class="px-6 py-4 text-gray-400 whitespace-nowrap">
+                  s.lamari&#64;tresor.dz
+                </td>
+                <td class="px-6 py-4 whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 py-1 text-xs font-bold leading-none text-gray-100 bg-gray-400 rounded-full"
+                    >Aucun</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-center whitespace-nowrap">
+                  <span
+                    class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-200 rounded-full"
+                    >Désactivé</span
+                  >
+                </td>
+                <td
+                  class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+                >
+                  <button
+                    (click)="openModal('user')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Modifier
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <!-- ######## FIN DU CODE CORRIGÉ ######## -->
+        </div>
+      </div>
+
+      <!-- ######### Onglet: Rôles et Permissions ######### -->
+      <div *ngIf="activeTab === 'roles'" class="space-y-6">
+        <div class="flex justify-end">
+          <button
+            (click)="openModal('role')"
+            class="flex items-center gap-2 px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="w-5 h-5"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <span>Nouveau Rôle</span>
+          </button>
+        </div>
+        <div class="overflow-x-auto bg-white border border-gray-200 rounded-lg">
+          <table class="min-w-full text-sm align-middle">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-4 font-semibold text-left text-gray-600">
+                  Nom du Rôle
+                </th>
+                <th class="px-6 py-4 font-semibold text-left text-gray-600">
+                  Description
+                </th>
+                <th class="px-6 py-4 font-semibold text-center text-gray-600">
+                  Utilisateurs Assignés
+                </th>
+                <th class="relative px-6 py-4">
+                  <span class="sr-only">Actions</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-2 py-1 font-bold text-red-100 bg-red-600 rounded-full"
+                    >Administrateur</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-gray-500">
+                  Accès total à toutes les fonctionnalités.
+                </td>
+                <td class="px-6 py-4 text-center text-gray-500">1</td>
+                <td class="px-6 py-4 text-sm font-medium text-right">
+                  <button
+                    (click)="openModal('role')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Gérer les Permissions
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-2 py-1 font-bold text-blue-100 bg-blue-600 rounded-full"
+                    >Chef de Service</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-gray-500">
+                  Peut valider les opérations et gérer les agents de son
+                  service.
+                </td>
+                <td class="px-6 py-4 text-center text-gray-500">3</td>
+                <td class="px-6 py-4 text-sm font-medium text-right">
+                  <button
+                    (click)="openModal('role')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Gérer les Permissions
+                  </button>
+                </td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4">
+                  <span
+                    class="px-2 py-1 font-bold text-gray-100 bg-gray-600 rounded-full"
+                    >Agent</span
+                  >
+                </td>
+                <td class="px-6 py-4 text-gray-500">
+                  Accès standard à la saisie des opérations et à la
+                  consultation.
+                </td>
+                <td class="px-6 py-4 text-center text-gray-500">12</td>
+                <td class="px-6 py-4 text-sm font-medium text-right">
+                  <button
+                    (click)="openModal('role')"
+                    class="text-[#00A88E] hover:underline"
+                  >
+                    Gérer les Permissions
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ######### Section des Fenêtres Modales ######### -->
+
+<!-- Modale pour Modifier/Inviter un Utilisateur -->
+<div
+  *ngIf="isUserModalOpen"
+  class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+  (click)="closeModals()"
+>
+  <div
+    class="w-full max-w-md p-6 bg-white rounded-lg"
+    (click)="$event.stopPropagation()"
+  >
+    <h3 class="text-lg font-bold text-gray-800">
+      Inviter un Nouvel Utilisateur
+    </h3>
+    <div class="mt-4 space-y-4">
+      <div>
+        <label for="userName" class="block text-sm font-medium text-gray-600"
+          >Nom complet</label
+        >
+        <input type="text" id="userName" class="w-full ..." />
+      </div>
+      <div>
+        <label for="userEmail" class="block text-sm font-medium text-gray-600"
+          >Adresse Email</label
+        >
+        <input type="email" id="userEmail" class="w-full ..." />
+      </div>
+      <div>
+        <label for="userRole" class="block text-sm font-medium text-gray-600"
+          >Assigner un rôle</label
+        >
+        <select id="userRole" class="w-full ...">
+          <option>Agent</option>
+          <option>Chef de Service</option>
+          <option>Administrateur</option>
+        </select>
+      </div>
+    </div>
+    <div class="flex justify-end gap-4 mt-6">
+      <button (click)="closeModals()" class="px-4 py-2 ...">Annuler</button>
+      <button class="px-4 py-2 ... bg-[#3DE8CA]">Envoyer l'Invitation</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modale pour Gérer les Permissions d'un Rôle -->
+<div
+  *ngIf="isRoleModalOpen"
+  class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+  (click)="closeModals()"
+>
+  <div
+    class="w-full max-w-2xl p-6 bg-white rounded-lg"
+    (click)="$event.stopPropagation()"
+  >
+    <h3 class="text-lg font-bold text-gray-800">
+      Gérer les Permissions pour le Rôle :
+      <span class="text-[#00A88E]">Chef de Service</span>
+    </h3>
+    <div
+      class="mt-4 grid grid-cols-1 md:grid-cols-3 gap-6 max-h-96 overflow-y-auto pr-2"
+    >
+      <!-- Groupe de Permissions: Client -->
+      <div class="space-y-2">
+        <h4 class="font-semibold text-gray-700">Menu Client</h4>
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." checked />
+          <span class="ml-2 text-sm">Saisie Client</span></label
+        >
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm">Modification Client</span></label
+        >
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm">Annulation Client</span></label
+        >
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm">Bloquer Compte</span></label
+        >
+      </div>
+      <!-- Groupe de Permissions: Opérations -->
+      <div class="space-y-2">
+        <h4 class="font-semibold text-gray-700">Menu Opération</h4>
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm">Saisie Operations Quotidienne</span></label
+        >
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm">Annulation des Opérations</span></label
+        >
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm">Certification des Chèques</span></label
+        >
+      </div>
+      <!-- Groupe de Permissions: Administration -->
+      <div class="space-y-2">
+        <h4 class="font-semibold text-gray-700">Administration</h4>
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm text-gray-400"
+            >Prise en charge des Ops de Régie</span
+          ></label
+        >
+        <label class="flex items-center"
+          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          <span class="ml-2 text-sm text-gray-400"
+            >Modification Opérations BA</span
+          ></label
+        >
+      </div>
+    </div>
+    <div class="flex justify-end gap-4 mt-6">
+      <button (click)="closeModals()" class="px-4 py-2 ...">Annuler</button>
+      <button class="px-4 py-2 ... bg-[#3DE8CA]">
+        Enregistrer les Permissions
+      </button>
+    </div>
+  </div>
+</div>

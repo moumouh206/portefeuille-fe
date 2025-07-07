@@ -1,0 +1,220 @@
+<!-- src/app/pages/operation-list/operation-list.component.html -->
+<div class="space-y-8">
+  <!-- Header de la page -->
+  <div>
+    <h1 class="text-3xl font-bold text-gray-800">Opérations Quotidiennes</h1>
+    <p class="mt-1 text-gray-500">
+      Saisissez les nouvelles opérations et consultez les transactions du jour.
+    </p>
+  </div>
+
+  <!-- Section de Saisie d'Opération -->
+  <div class="p-6 bg-white rounded-lg">
+    <h2
+      class="text-xl font-semibold text-gray-800 border-b border-gray-200 pb-4"
+    >
+      Nouvelle Opération
+    </h2>
+
+    <form class="grid grid-cols-1 gap-6 mt-6 lg:grid-cols-5">
+      <!-- Type d'opération -->
+      <div class="lg:col-span-1">
+        <label
+          for="operationType"
+          class="block text-sm font-medium text-gray-600"
+          >Type d'Opération</label
+        >
+        <select
+          id="operationType"
+          class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        >
+          <option>Paiement Chèque</option>
+          <option>Certification Chèque</option>
+          <option>Virement Interne</option>
+          <option>Versement Espèces</option>
+          <option>Retrait Espèces</option>
+        </select>
+      </div>
+
+      <!-- Recherche Client -->
+      <div class="lg:col-span-2">
+        <label
+          for="clientSearch"
+          class="block text-sm font-medium text-gray-600"
+          >Compte Client</label
+        >
+        <input
+          type="text"
+          id="clientSearch"
+          placeholder="Rechercher par nom ou N° de compte..."
+          class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+        <!-- Note: en production, ce champ serait un autocomplete. -->
+      </div>
+
+      <!-- Montant -->
+      <div class="lg:col-span-1">
+        <label for="amount" class="block text-sm font-medium text-gray-600"
+          >Montant (DA)</label
+        >
+        <input
+          type="number"
+          id="amount"
+          placeholder="0.00"
+          class="w-full px-4 py-2 mt-1 font-mono text-right text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+      </div>
+
+      <!-- Bouton de soumission -->
+      <div class="lg:col-span-1 flex items-end">
+        <button
+          type="submit"
+          class="w-full px-6 py-2.5 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+        >
+          Valider
+        </button>
+      </div>
+
+      <!-- Champs Additionnels (Ex: N° de chèque) - affichage conditionnel -->
+      <div class="lg:col-span-5">
+        <label for="checkNumber" class="block text-sm font-medium text-gray-600"
+          >N° de Chèque</label
+        >
+        <input
+          type="text"
+          id="checkNumber"
+          class="w-full max-w-xs px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+      </div>
+    </form>
+  </div>
+
+  <!-- Section "Opérations du Jour" -->
+  <div>
+    <h2 class="text-xl font-semibold text-gray-800 mb-4">
+      Opérations du Jour (13 Août 2024)
+    </h2>
+    <div class="overflow-x-auto bg-white rounded-lg">
+      <table class="min-w-full text-sm align-middle">
+        <thead class="bg-gray-50">
+          <tr>
+            <th
+              scope="col"
+              class="px-6 py-3 font-semibold text-left text-gray-600"
+            >
+              Heure
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 font-semibold text-left text-gray-600"
+            >
+              Client / Libellé
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 font-semibold text-left text-gray-600"
+            >
+              Type
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 font-semibold text-right text-gray-600"
+            >
+              Montant (DA)
+            </th>
+            <th
+              scope="col"
+              class="px-6 py-3 font-semibold text-center text-gray-600"
+            >
+              Statut
+            </th>
+            <th scope="col" class="relative px-6 py-3">
+              <span class="sr-only">Actions</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <!-- Ligne 1: Paiement (Débit) -->
+          <tr>
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">14:32</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <p class="font-semibold text-gray-800">E.P.A. "El Wiam"</p>
+              <p class="text-gray-500">Paiement Chèque #12345</p>
+            </td>
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">Débit</td>
+            <td
+              class="px-6 py-4 font-mono font-semibold text-right text-red-600 whitespace-nowrap"
+            >
+              -15,000.00
+            </td>
+            <td class="px-6 py-4 text-center whitespace-nowrap">
+              <span
+                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                >Validé</span
+              >
+            </td>
+            <td
+              class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+            >
+              <button class="text-red-600 hover:text-red-800">Annuler</button>
+            </td>
+          </tr>
+
+          <!-- Ligne 2: Certification (Consignation) -->
+          <tr>
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">11:15</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <p class="font-semibold text-gray-800">Maitre Belkacem</p>
+              <p class="text-gray-500">Certification Chèque #55432</p>
+            </td>
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">
+              Consignation
+            </td>
+            <td
+              class="px-6 py-4 font-mono font-semibold text-right text-yellow-600 whitespace-nowrap"
+            >
+              -250,000.00
+            </td>
+            <td class="px-6 py-4 text-center whitespace-nowrap">
+              <span
+                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                >Validé</span
+              >
+            </td>
+            <td
+              class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+            >
+              <button class="text-red-600 hover:text-red-800">Annuler</button>
+            </td>
+          </tr>
+
+          <!-- Ligne 3: Virement (Crédit) -->
+          <tr>
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">09:05</td>
+            <td class="px-6 py-4 whitespace-nowrap">
+              <p class="font-semibold text-gray-800">Huissier-005</p>
+              <p class="text-gray-500">Virement Reçu BA</p>
+            </td>
+            <td class="px-6 py-4 text-gray-500 whitespace-nowrap">Crédit</td>
+            <td
+              class="px-6 py-4 font-mono font-semibold text-right text-green-600 whitespace-nowrap"
+            >
+              +420,000.00
+            </td>
+            <td class="px-6 py-4 text-center whitespace-nowrap">
+              <span
+                class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                >Validé</span
+              >
+            </td>
+            <td
+              class="px-6 py-4 text-sm font-medium text-right whitespace-nowrap"
+            >
+              <button class="text-red-600 hover:text-red-800">Annuler</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

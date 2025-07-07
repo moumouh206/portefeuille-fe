@@ -1,0 +1,214 @@
+<!-- src/app/pages/caisse-management/caisse-management.component.html -->
+<div class="space-y-8">
+  <!-- Header et sélecteur de date (inchangé) -->
+  <div>
+    <h1 class="text-3xl font-bold text-gray-800">Gestion de la Caisse</h1>
+    <p class="mt-1 text-gray-500">
+      Consultez et gérez l'état de la caisse journalière.
+    </p>
+  </div>
+  <div
+    class="flex flex-col md:flex-row md:items-center md:justify-between p-4 bg-white rounded-lg"
+  >
+    <!-- ... sélecteur de date ... -->
+    <div class="flex items-center gap-3 mt-4 md:mt-0">
+      <span class="font-semibold text-gray-700">Statut de la journée :</span>
+      <span
+        class="inline-flex px-3 py-1 text-sm font-semibold leading-5 text-blue-800 bg-blue-100 rounded-full"
+        >En Cours</span
+      >
+    </div>
+  </div>
+
+  <!-- Section principale avec les détails de la caisse -->
+  <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+    <!-- Colonne 1: Détails de la caisse (avec bouton mis à jour) -->
+    <div class="p-6 space-y-6 bg-white rounded-lg lg:col-span-1">
+      <h2 class="text-xl font-semibold text-gray-800">État de la Caisse</h2>
+      <!-- ... Détails des soldes (inchangé) ... -->
+      <div
+        class="flex items-center justify-between p-4 border-l-4 border-blue-400 bg-blue-50 rounded-r-lg"
+      >
+        <p class="text-lg font-semibold text-blue-700">Solde Théorique Final</p>
+        <p class="font-mono text-2xl font-bold text-blue-800">1,405,000.00</p>
+      </div>
+
+      <!-- Action de clôture MISE À JOUR -->
+      <div class="pt-4 border-t border-gray-200">
+        <button
+          (click)="openCloseModal()"
+          class="w-full px-6 py-3 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+        >
+          Clôturer la Journée
+        </button>
+      </div>
+    </div>
+
+    <!-- Colonne 2: Historique des Saisies (avec bouton d'annulation) -->
+    <div class="p-6 bg-white rounded-lg lg:col-span-2">
+      <h2 class="text-xl font-semibold text-gray-800">
+        Historique des Saisies (`PTFLL_03_02`)
+      </h2>
+      <p class="text-sm text-gray-500">
+        Liste des états enregistrés pour cette journée.
+      </p>
+
+      <div class="mt-4 overflow-x-auto">
+        <table class="min-w-full text-sm align-middle">
+          <thead class="bg-gray-50">
+            <tr>
+              <th
+                scope="col"
+                class="px-6 py-3 font-semibold text-left text-gray-600"
+              >
+                Heure
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 font-semibold text-left text-gray-600"
+              >
+                Utilisateur
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 font-semibold text-right text-gray-600"
+              >
+                Montant Constaté
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 font-semibold text-right text-gray-600"
+              >
+                Écart
+              </th>
+              <th
+                scope="col"
+                class="px-6 py-3 font-semibold text-center text-gray-600"
+              >
+                Statut
+              </th>
+              <th scope="col" class="relative px-6 py-3">
+                <span class="sr-only">Actions</span>
+              </th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200">
+            <!-- Exemple de saisie valide -->
+            <tr>
+              <td class="px-6 py-4 text-gray-500">16:45</td>
+              <td class="px-6 py-4 font-medium text-gray-800">
+                M. FERKHI Mouloud
+              </td>
+              <td class="px-6 py-4 font-mono text-right text-gray-800">
+                1,405,000.00
+              </td>
+              <td class="px-6 py-4 font-mono text-right text-green-600">
+                0.00
+              </td>
+              <td class="px-6 py-4 text-center">
+                <span
+                  class="inline-flex px-2 text-xs font-semibold leading-5 text-green-800 bg-green-100 rounded-full"
+                  >Clôturée</span
+                >
+              </td>
+              <td class="px-6 py-4 text-sm font-medium text-right">
+                <!-- Action d'annulation -->
+                <button class="text-red-600 hover:underline">
+                  Annuler la clôture
+                </button>
+              </td>
+            </tr>
+            <!-- Exemple d'une saisie déjà annulée -->
+            <tr>
+              <td class="px-6 py-4 text-gray-400">16:30</td>
+              <td class="px-6 py-4 font-medium text-gray-400 line-through">
+                M. FERKHI Mouloud
+              </td>
+              <td
+                class="px-6 py-4 font-mono text-right text-gray-400 line-through"
+              >
+                1,404,500.00
+              </td>
+              <td
+                class="px-6 py-4 font-mono text-right text-gray-400 line-through"
+              >
+                -500.00
+              </td>
+              <td class="px-6 py-4 text-center">
+                <span
+                  class="inline-flex px-2 text-xs font-semibold leading-5 text-gray-700 bg-gray-200 rounded-full"
+                  >Annulée</span
+                >
+              </td>
+              <td class="px-6 py-4 text-sm font-medium text-right">
+                <span class="text-gray-400">---</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ######### Fenêtre Modale pour la Clôture de Caisse ######### -->
+<div
+  *ngIf="isCloseModalOpen"
+  class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+>
+  <div class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl">
+    <div class="flex items-center justify-between">
+      <h3 class="text-lg font-bold text-gray-800">
+        Clôture de la Caisse du 13/08/2024
+      </h3>
+      <button
+        (click)="closeCloseModal()"
+        class="p-1 text-gray-500 rounded-full hover:bg-gray-200"
+      >
+        ×
+      </button>
+    </div>
+    <div class="mt-4">
+      <p class="text-sm text-gray-600">
+        Veuillez saisir le montant physique total constaté en caisse pour
+        valider la clôture de la journée.
+      </p>
+
+      <div class="mt-4">
+        <label
+          for="physicalAmount"
+          class="block text-sm font-medium text-gray-600"
+          >Montant Physique Constaté (DA)</label
+        >
+        <input
+          type="number"
+          id="physicalAmount"
+          placeholder="0.00"
+          class="w-full px-4 py-2 mt-1 font-mono text-right text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+      </div>
+
+      <!-- Affichage de l'écart en temps réel (simulation) -->
+      <div
+        class="flex items-center justify-between p-3 mt-4 text-sm bg-yellow-50 text-yellow-800 rounded-lg"
+      >
+        <span>Écart constaté :</span>
+        <span class="font-mono font-bold">-500.00</span>
+      </div>
+    </div>
+
+    <div class="flex justify-end gap-4 mt-6">
+      <button
+        (click)="closeCloseModal()"
+        class="px-4 py-2 font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100"
+      >
+        Annuler
+      </button>
+      <button
+        class="px-4 py-2 font-semibold text-white bg-[#3DE8CA] rounded-lg hover:bg-[#00A88E]"
+      >
+        Confirmer et Clôturer
+      </button>
+    </div>
+  </div>
+</div>

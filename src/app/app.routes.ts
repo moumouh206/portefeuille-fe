@@ -12,6 +12,8 @@ import { CaisseManagementComponent } from './pages/caisse-management/caisse-mana
 import { AdminManagementComponent } from './pages/admin-management/admin-management';
 import { StockManagementComponent } from './pages/stock-management/stock-management';
 import { BatchProcessingComponent } from './pages/batch-processing/batch-processing';
+import { ReportingComponent } from './pages/reporting/reporting';
+import { ProfileComponent } from './pages/profile/profile';
 import { WipComponent } from './pages/wip/wip';
 
 export const routes: Routes = [
@@ -21,6 +23,7 @@ export const routes: Routes = [
     path: 'login',
     component: LoginComponent,
   },
+  { path: 'wip', component: WipComponent },
 
   // 2. Le MainLayout EST la route par défaut de l'application.
   //    Toutes les pages protégées sont ses enfants.
@@ -38,7 +41,8 @@ export const routes: Routes = [
       { path: 'admin', component: AdminManagementComponent },
       { path: 'stock', component: StockManagementComponent },
       { path: 'operations', component: BatchProcessingComponent },
-      { path: 'wip', component: WipComponent },
+      { path: 'reporting', component: ReportingComponent },
+      { path: 'profile', component: ProfileComponent },
 
       // Si un utilisateur arrive sur le chemin racine (''),
       // on le redirige vers le tableau de bord.

@@ -1,14 +1,14 @@
 // src/app/pages/client-details/client-details.component.ts
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
+
 
 type Tab = 'info' | 'history' | 'checkbooks' | 'actions';
 
 @Component({
   selector: 'app-client-details',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule],
   templateUrl: './client-details.html',
 })
 export class ClientDetailsComponent {

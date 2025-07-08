@@ -6,8 +6,8 @@ module.exports = {
       // Nous mettons toutes les couleurs directement ici
       colors: {
         // --- Palette Principale Kaspersky ---
-        "kaspersky-green": "#3DE8CA",
-        "kaspersky-green-light": "#7CFFE9",
+        "kaspersky-green": "#187181",
+        "kaspersky-green-light": "#2aa0b5",
         "kaspersky-green-lighter": "#BEFFF4",
         "kaspersky-green-dark": "#00A88E",
 

@@ -1,205 +1,74 @@
 <!-- src/app/layouts/sidebar/sidebar.component.html -->
-<aside
-  class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-[#3DE8CA]"
->
+<aside class="flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-[#187181]">
   <!-- Logo -->
-  <a [routerLink]="['/dashboard']" class="flex items-center px-4 -mx-2">
-    <svg
-      class="w-8 h-8 text-gray-600"
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.5 0l3.5 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-      />
+  <a [routerLink]="['/dashboard']" class="flex items-center px-2">
+    <!-- Nouvelle icône pour le logo -->
+    <svg class="w-8 h-8 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.75A.75.75 0 013 4.5h.75m0 0H21m-9 12.75h5.25m-5.25 0h-4.5m5.25 0V18s0-2.25-2.25-2.25H9.75S7.5 15.75 7.5 18v.75m12-3V9A2.25 2.25 0 0017.25 6.75H9.75A2.25 2.25 0 007.5 9v.75m12 3h-3.375" />
     </svg>
-    <span class="mx-2 text-xl font-semibold text-gray-600">Portefeuille</span>
+    <span class="ml-3 text-xl font-bold text-white">Portefeuille</span>
   </a>
 
   <!-- Menu de Navigation -->
-  <div class="flex flex-col justify-between flex-1 mt-6">
-    <nav>
+  <div class="flex flex-col justify-between flex-1 mt-8">
+    <nav class="-mx-2 space-y-1">
       <!-- Tableau de bord -->
-      <a
-        class="flex items-center px-4 py-2 text-gray-700 bg-[#7CFFE9] rounded-md"
-        [routerLink]="['/dashboard']"
-        routerLinkActive="bg-[#7CFFE9] text-gray-600"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M19 11H5M19 11C20.1046 11 21 11.8954 21 13V19C21 20.1046 20.1046 21 19 21H5C3.89543 21 3 20.1046 3 19V13C3 11.8954 3.89543 11 5 11M19 11V9C19 7.89543 18.1046 7 17 7M5 11V9C5 7.89543 5.89543 7 7 7M7 7V5C7 3.89543 7.89543 3 9 3H15C16.1046 3 17 3.89543 17 5V7M7 7H17"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+      <a class="flex items-center justify-start px-4 py-2 text-white transition-colors duration-300 transform rounded-lg hover:bg-[#2aa0b5]"
+         [routerLink]="['/dashboard']" routerLinkActive="bg-[#1d95ab] text-[#006050] shadow-sm" [routerLinkActiveOptions]="{ exact: true }">
+        <!-- Nouvelle icône -->
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 12h16.5m-16.5 3.75h16.5M3.75 19.5h16.5M5.625 4.5h12.75a1.875 1.875 0 010 3.75H5.625a1.875 1.875 0 010-3.75z" />
         </svg>
         <span class="mx-4 font-medium">Tableau de Bord</span>
       </a>
 
       <!-- Gestion des Clients -->
-      <a
-        class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md hover:bg-[#7CFFE9] hover:text-gray-600"
-        [routerLink]="['/clients']"
-        routerLinkActive="bg-[#7CFFE9] text-gray-600"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M16 7C16 9.20914 14.2091 11 12 11C9.79086 11 8 9.20914 8 7C8 4.79086 9.79086 3 12 3C14.2091 3 16 4.79086 16 7Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M12 14C8.13401 14 5 17.134 5 21H19C19 17.134 15.866 14 12 14Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+      <a class="flex items-center justify-start px-4 py-2 text-white transition-colors duration-300 transform rounded-lg hover:bg-[#2aa0b5]"
+         [routerLink]="['/clients']" routerLinkActive="bg-[#1d95ab] text-[#006050] shadow-sm">
+        <!-- Nouvelle icône -->
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-4.66c.12-.144.239-.29.354-.442M7.884 15.046A9.337 9.337 0 008.624 21a9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493c-1.426.002-2.823.32-4.001.952 1.123-.345 2.318-.585 3.54-.585z" />
         </svg>
         <span class="mx-4 font-medium">Gestion des Clients</span>
       </a>
 
       <!-- Opérations -->
-      <a
-        class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md hover:bg-[#7CFFE9] hover:text-gray-600"
-        [routerLink]="['/operations']"
-        routerLinkActive="bg-[#7CFFE9] text-gray-600"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M17 9.5H21M17 14.5H21M5 9.5H13M5 14.5H13M17 20V4C17 3.44772 16.5523 3 16 3H8C7.44772 3 7 3.44772 7 4V20C7 20.5523 7.44772 21 8 21H16C16.5523 21 17 20.5523 17 20Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+      <a class="flex items-center justify-start px-4 py-2 text-white transition-colors duration-300 transform rounded-lg hover:bg-[#2aa0b5]"
+         [routerLink]="['/operations']" routerLinkActive="bg-[#1d95ab] text-[#006050] shadow-sm">
+        <!-- Nouvelle icône -->
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 21L3 16.5m0 0L7.5 12M3 16.5h18M16.5 3L21 7.5m0 0L16.5 12M21 7.5H3" />
         </svg>
         <span class="mx-4 font-medium">Opérations</span>
       </a>
-
-      <!-- Gestion de la Caisse -->
-      <a
-        class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md hover:bg-[#7CFFE9] hover:text-gray-600"
-        [routerLink]="['/caisse']"
-        routerLinkActive="bg-[#7CFFE9] text-gray-600"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M15 10H16.5V14H15V10Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M7.5 10H9V14H7.5V10Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M3 6V20C3 20.5523 3.44772 21 4 21H20C20.5523 21 21 20.5523 21 20V6C21 5.44772 20.5523 5 20 5H4C3.44772 5 3 5.44772 3 6Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M3 10H21"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M12 10V21"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-          <path
-            d="M18 5V3M6 5V3"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
-        </svg>
-        <span class="mx-4 font-medium">Gestion de la Caisse</span>
-      </a>
+      
       <!-- Gestion des Stocks -->
-      <a
-        class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md hover:bg-[#7CFFE9] hover:text-gray-600"
-        [routerLink]="['/stock']"
-        routerLinkActive="bg-[#7CFFE9] text-gray-600"
-      >
-        <svg
-          class="w-5 h-5"
-          xmlns="http://www.w3.org/2000/svg"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke-width="1.5"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
-          />
+      <a class="flex items-center justify-start px-4 py-2 text-white transition-colors duration-300 transform rounded-lg hover:bg-[#2aa0b5]"
+         [routerLink]="['/stock']" routerLinkActive="bg-[#1d95ab] text-[#006050] shadow-sm">
+        <!-- Nouvelle icône -->
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z" />
         </svg>
         <span class="mx-4 font-medium">Gestion des Stocks</span>
       </a>
 
+      <!-- Gestion de la Caisse -->
+      <a class="flex items-center justify-start px-4 py-2 text-white transition-colors duration-300 transform rounded-lg hover:bg-[#2aa0b5]"
+         [routerLink]="['/caisse']" routerLinkActive="bg-[#1d95ab] text-[#006050] shadow-sm">
+        <!-- Nouvelle icône -->
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.5 0l3.5 0M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span class="mx-4 font-medium">Gestion de la Caisse</span>
+      </a>
+
       <!-- Administration -->
-      <a
-        class="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-md hover:bg-[#7CFFE9] hover:text-gray-600"
-        [routerLink]="['/admin']"
-        routerLinkActive="bg-[#7CFFE9] text-gray-600"
-      >
-        <svg
-          class="w-5 h-5"
-          viewBox="0 0 24 24"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M10.3246 4.31731C10.751 2.56455 13.249 2.56455 13.6754 4.31731C13.9453 5.43985 14.8219 6.30971 15.9529 6.56847C17.7202 6.98006 18.5072 9.21339 17.3917 10.601C16.6373 11.5282 16.6373 12.8718 17.3917 13.799C18.5072 15.1866 17.7202 17.4199 15.9529 17.8315C14.8219 18.0903 13.9453 18.9601 13.6754 20.0827C13.249 21.8354 10.751 21.8354 10.3246 20.0827C10.0547 18.9601 9.17812 18.0903 8.04709 17.8315C6.27983 17.4199 5.49282 15.1866 6.60828 13.799C7.36272 12.8718 7.36272 11.5282 6.60828 10.601C5.49282 9.21339 6.27983 6.98006 8.04709 6.56847C9.17812 6.30971 10.0547 5.43985 10.3246 4.31731Z"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          />
+      <a class="flex items-center justify-start px-4 py-2 text-white transition-colors duration-300 transform rounded-lg hover:bg-[#2aa0b5]"
+         [routerLink]="['/admin']" routerLinkActive="bg-[#1d95ab] text-[#006050] shadow-sm">
+        <!-- Nouvelle icône -->
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M10.343 3.94c.09-.542.56-.94 1.11-.94h1.093c.55 0 1.02.398 1.11.94l.149.894c.07.424.384.764.78.93.398.164.855.142 1.205-.108l.737-.527c.48-.342 1.12-.172 1.413.31l.577.997c.294.502.12.982-.358 1.25l-.74.532c-.35.25-.56.67-.56 1.104v.058c0 .434.21.854.56 1.104l.74.532c.478.268.652.748.358 1.25l-.577.997c-.293.502-.934.652-1.413.31l-.737-.527c-.35-.266-.807-.272-1.205-.108-.396.166-.71.506-.78.93l-.149.894c-.09.542-.56.94-1.11.94h-1.093c-.55 0-1.02-.398-1.11-.94l-.149-.894c-.07-.424-.384-.764-.78-.93-.398-.164-.855-.142-1.205.108l-.737.527c-.48.342-1.12.172-1.413-.31l-.577-.997c-.294-.502-.12-.982.358-1.25l.74-.532c.35-.25.56-.67.56-1.104v-.058c0-.434-.21-.854-.56-1.104l-.74-.532c-.478-.268-.652-.748-.358-1.25l.577-.997c.293-.502.934-.652 1.413.31l.737.527c.35.266.807.272 1.205.108.396-.166.71.506.78.93l.149.894z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
         <span class="mx-4 font-medium">Administration</span>
       </a>

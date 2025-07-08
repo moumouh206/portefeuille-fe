@@ -64,7 +64,7 @@
                 <textarea
                   id="blockReason"
                   rows="2"
-                  class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+                  class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#187181]"
                 ></textarea>
               </div>
             </div>
@@ -89,7 +89,7 @@
           Solder le compte
         </button>
         <button
-          class="px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+          class="px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#187181] hover:bg-[#00A88E]"
         >
           Nouvelle Opération
         </button>
@@ -104,7 +104,7 @@
         <button
           (click)="selectTab('info')"
           [ngClass]="{
-            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'info',
+            'border-[#187181] text-[#00A88E]': activeTab === 'info',
             'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
               activeTab !== 'info'
           }"
@@ -115,7 +115,7 @@
         <button
           (click)="selectTab('history')"
           [ngClass]="{
-            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'history',
+            'border-[#187181] text-[#00A88E]': activeTab === 'history',
             'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
               activeTab !== 'history'
           }"
@@ -126,7 +126,7 @@
         <button
           (click)="selectTab('checkbooks')"
           [ngClass]="{
-            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'checkbooks',
+            'border-[#187181] text-[#00A88E]': activeTab === 'checkbooks',
             'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
               activeTab !== 'checkbooks'
           }"
@@ -137,7 +137,7 @@
         <button
           (click)="selectTab('actions')"
           [ngClass]="{
-            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'actions',
+            'border-[#187181] text-[#00A88E]': activeTab === 'actions',
             'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300':
               activeTab !== 'actions'
           }"
@@ -272,7 +272,7 @@
           <div class="flex items-center gap-3 mt-4 md:mt-0">
             <button
               (click)="openModal('oppose')"
-              class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-yellow-800 transition-colors bg-yellow-100 rounded-lg hover:bg-yellow-200"
+              class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-yellow-800 transition-colors bg-yellow-100 rounded-lg hover:bg-yellow-200 cursor-pointer"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -290,7 +290,7 @@
             </button>
             <button
               (click)="openModal('remise')"
-              class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+              class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white transition-colors rounded-lg bg-[#187181] hover:bg-[#00A88E]"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -354,7 +354,7 @@
                     Annuler
                   </button>
                   <button
-                    class="px-4 py-2 font-semibold text-white bg-[#3DE8CA] rounded-lg hover:bg-[#00A88E]"
+                    class="px-4 py-2 font-semibold text-white bg-[#187181] rounded-lg hover:bg-[#00A88E]"
                   >
                     Confirmer la Remise
                   </button>
@@ -494,11 +494,11 @@
                 type="number"
                 id="quantity"
                 value="1"
-                class="w-32 px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+                class="w-32 px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#187181]"
               />
             </div>
             <button
-              class="px-6 py-2.5 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+              class="px-6 py-2.5 font-semibold text-white transition-colors rounded-lg bg-[#187181] hover:bg-[#00A88E]"
             >
               Lancer la Commande
             </button>
@@ -626,12 +626,12 @@
                   type="number"
                   id="blockAmount"
                   placeholder="0.00"
-                  class="w-full px-4 py-2 mt-1 font-mono text-right text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+                  class="w-full px-4 py-2 mt-1 font-mono text-right text-gray-800 bg-white border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#187181]"
                 />
               </div>
               <button
                 type="submit"
-                class="px-4 py-2 font-medium text-white rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+                class="px-4 py-2 font-medium text-white rounded-lg bg-[#187181] hover:bg-[#00A88E]"
               >
                 Bloquer Montant
               </button>

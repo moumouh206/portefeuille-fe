@@ -14,7 +14,7 @@
         <button
           (click)="selectTab('users')"
           [ngClass]="{
-            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'users',
+            'border-[#187181] text-[#00A88E]': activeTab === 'users',
             'border-transparent text-gray-500 hover:text-gray-700':
               activeTab !== 'users'
           }"
@@ -25,7 +25,7 @@
         <button
           (click)="selectTab('roles')"
           [ngClass]="{
-            'border-[#3DE8CA] text-[#00A88E]': activeTab === 'roles',
+            'border-[#187181] text-[#00A88E]': activeTab === 'roles',
             'border-transparent text-gray-500 hover:text-gray-700':
               activeTab !== 'roles'
           }"
@@ -42,7 +42,7 @@
         <div class="flex justify-end">
           <button
             (click)="openModal('user')"
-            class="flex items-center gap-2 px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+            class="flex items-center gap-2 px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#187181] hover:bg-[#00A88E]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -98,7 +98,7 @@
                   <div class="flex items-center">
                     <div class="relative flex-shrink-0 w-10 h-10">
                       <span
-                        class="flex items-center justify-center w-full h-full text-xl font-semibold text-white bg-[#3DE8CA] rounded-full"
+                        class="flex items-center justify-center w-full h-full text-xl font-semibold text-white bg-[#187181] rounded-full"
                         >MF</span
                       >
                     </div>
@@ -279,7 +279,7 @@
         <div class="flex justify-end">
           <button
             (click)="openModal('role')"
-            class="flex items-center gap-2 px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+            class="flex items-center gap-2 px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#187181] hover:bg-[#00A88E]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -426,7 +426,7 @@
     </div>
     <div class="flex justify-end gap-4 mt-6">
       <button (click)="closeModals()" class="px-4 py-2 ...">Annuler</button>
-      <button class="px-4 py-2 ... bg-[#3DE8CA]">Envoyer l'Invitation</button>
+      <button class="px-4 py-2 ... bg-[#187181]">Envoyer l'Invitation</button>
     </div>
   </div>
 </div>
@@ -452,19 +452,19 @@
       <div class="space-y-2">
         <h4 class="font-semibold text-gray-700">Menu Client</h4>
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." checked />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." checked />
           <span class="ml-2 text-sm">Saisie Client</span></label
         >
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm">Modification Client</span></label
         >
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm">Annulation Client</span></label
         >
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm">Bloquer Compte</span></label
         >
       </div>
@@ -472,15 +472,15 @@
       <div class="space-y-2">
         <h4 class="font-semibold text-gray-700">Menu Opération</h4>
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm">Saisie Operations Quotidienne</span></label
         >
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm">Annulation des Opérations</span></label
         >
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm">Certification des Chèques</span></label
         >
       </div>
@@ -488,13 +488,13 @@
       <div class="space-y-2">
         <h4 class="font-semibold text-gray-700">Administration</h4>
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm text-gray-400"
             >Prise en charge des Ops de Régie</span
           ></label
         >
         <label class="flex items-center"
-          ><input type="checkbox" class="h-4 w-4 text-[#3DE8CA] ..." />
+          ><input type="checkbox" class="h-4 w-4 text-[#187181] ..." />
           <span class="ml-2 text-sm text-gray-400"
             >Modification Opérations BA</span
           ></label
@@ -503,7 +503,7 @@
     </div>
     <div class="flex justify-end gap-4 mt-6">
       <button (click)="closeModals()" class="px-4 py-2 ...">Annuler</button>
-      <button class="px-4 py-2 ... bg-[#3DE8CA]">
+      <button class="px-4 py-2 ... bg-[#187181]">
         Enregistrer les Permissions
       </button>
     </div>

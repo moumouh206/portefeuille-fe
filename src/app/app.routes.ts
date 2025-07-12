@@ -11,6 +11,7 @@ import { OperationListComponent } from './pages/operation-list/operation-list';
 import { CaisseManagementComponent } from './pages/caisse-management/caisse-management';
 import { AdminManagementComponent } from './pages/admin-management/admin-management';
 import { StockManagementComponent } from './pages/stock-management/stock-management';
+import { CheckbookOrdersComponent } from './pages/checkbook-orders/checkbook-orders';
 import { BatchProcessingComponent } from './pages/batch-processing/batch-processing';
 import { ReportingComponent } from './pages/reporting/reporting';
 import { ProfileComponent } from './pages/profile/profile';
@@ -40,6 +41,7 @@ export const routes: Routes = [
       { path: 'caisse', component: CaisseManagementComponent },
       { path: 'admin', component: AdminManagementComponent },
       { path: 'stock', component: StockManagementComponent },
+      { path: 'checkbook-orders', component: CheckbookOrdersComponent },
       { path: 'operations', component: BatchProcessingComponent },
       { path: 'reporting', component: ReportingComponent },
       { path: 'profile', component: ProfileComponent },

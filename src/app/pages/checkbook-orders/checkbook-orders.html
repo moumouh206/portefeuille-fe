@@ -1,0 +1,316 @@
+<!-- src/app/pages/checkbook-orders/checkbook-orders.component.html -->
+<div class="space-y-8">
+  <!-- Header de la page -->
+  <div>
+    <h1 class="text-3xl font-bold text-gray-800">
+      Gestion des Commandes de Chéquiers
+    </h1>
+    <p class="mt-1 text-gray-500">
+      Créez, gérez et suivez les commandes de carnets de chèques.
+    </p>
+  </div>
+
+  <!-- Section 1: Liste des Commandes -->
+  <div class="p-6 bg-white rounded-lg">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+      <h2 class="text-xl font-semibold text-gray-800">Liste des Commandes</h2>
+      <!-- API: POST /api/commandes -->
+      <button
+        (click)="createCommande()"
+        class="flex items-center gap-2 px-4 py-2 mt-4 font-semibold text-white transition-colors rounded-lg md:mt-0 cursor-pointer bg-[#187181] hover:bg-[#00A88E]"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
+            clip-rule="evenodd"
+          />
+        </svg>
+        <span>Nouvelle Commande</span>
+      </button>
+    </div>
+
+    <!-- API: GET /api/commandes/search-filtre -->
+    <div class="mt-4 overflow-x-auto border border-gray-200 rounded-lg">
+      <table class="min-w-full text-sm align-middle">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 font-semibold text-left text-gray-600">
+              Code Commande
+            </th>
+            <th class="px-6 py-3 font-semibold text-left text-gray-600">
+              Poste Comptable
+            </th>
+            <th class="px-6 py-3 font-semibold text-center text-gray-600">
+              Statut
+            </th>
+            <th class="px-6 py-3 font-semibold text-center text-gray-600">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <!-- Boucle sur les commandes chargées depuis l'API -->
+          <tr
+            *ngFor="let cmd of commandes"
+            [ngClass]="{
+              'bg-blue-50': selectedCommande?.idCommande === cmd.idCommande
+            }"
+          >
+            <td class="px-6 py-4 font-mono font-semibold text-gray-800">
+              {{ cmd.codeCommande }}
+            </td>
+            <td class="px-6 py-4 text-gray-500">{{ cmd.idPosteComptable }}</td>
+            <td class="px-6 py-4 text-center">
+              <span
+                class="inline-flex px-2 py-1 text-xs font-bold leading-none rounded-full"
+                [ngClass]="{
+                  'text-blue-800 bg-blue-100':
+                    cmd.statuts[0].statut === 'OUVERTE',
+                  'text-green-800 bg-green-100':
+                    cmd.statuts[0].statut === 'VALIDEE',
+                  'text-purple-800 bg-purple-100':
+                    cmd.statuts[0].statut === 'ENVOYEE',
+                  'text-red-800 bg-red-100': cmd.statuts[0].statut === 'ANNULEE'
+                }"
+              >
+                {{ cmd.statuts[0].statut }}
+              </span>
+            </td>
+            <td
+              class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap"
+            >
+              <button
+                (click)="selectCommande(cmd)"
+                class="text-[#00A88E] hover:underline"
+              >
+                Détails
+              </button>
+              <span class="mx-2 text-gray-300">|</span>
+              <button
+                (click)="openModal('status')"
+                class="text-[#00A88E] hover:underline"
+              >
+                Changer Statut
+              </button>
+            </td>
+          </tr>
+          <!-- État si le tableau est vide -->
+          <tr *ngIf="commandes.length === 0">
+            <td colspan="4" class="px-6 py-12 text-center text-gray-400">
+              Aucune commande trouvée.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Section 2: Détails de la Commande Sélectionnée -->
+  <div *ngIf="selectedCommande" class="p-6 bg-white rounded-lg">
+    <div class="flex items-center justify-between">
+      <h2 class="text-xl font-semibold text-gray-800">
+        Détails de la Commande :
+        <span class="font-mono text-[#00A88E]">{{
+          selectedCommande.codeCommande
+        }}</span>
+      </h2>
+      <!-- API: POST /api/detail-commandes/add -->
+      <button
+        (click)="openModal('detail')"
+        [disabled]="selectedCommande.statuts[0].statut !== 'OUVERTE'"
+        class="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-white rounded-lg cursor-pointer bg-[#187181] hover:bg-[#00A88E] disabled:bg-gray-400 disabled:cursor-not-allowed"
+      >
+        Ajouter une Demande
+      </button>
+    </div>
+
+    <!-- API: GET /api/detail-commandes/by-commande/{id} -->
+    <div class="mt-4 overflow-x-auto border border-gray-200 rounded-lg">
+      <table class="min-w-full text-sm align-middle">
+        <thead class="bg-gray-50">
+          <tr>
+            <th class="px-6 py-3 font-semibold text-left text-gray-600">
+              ID Compte
+            </th>
+            <th class="px-6 py-3 font-semibold text-center text-gray-600">
+              Nbr Carnets
+            </th>
+            <th class="px-6 py-3 font-semibold text-left text-gray-600">
+              Date Demande
+            </th>
+            <th class="px-6 py-3 font-semibold text-center text-gray-600">
+              Actions
+            </th>
+          </tr>
+        </thead>
+        <tbody class="divide-y divide-gray-200">
+          <tr *ngFor="let detail of selectedCommande.details">
+            <td class="px-6 py-4 font-mono text-gray-800">
+              {{ detail.idCompte }}
+            </td>
+            <td class="px-6 py-4 text-center text-gray-500">
+              {{ detail.nbrCarnet }}
+            </td>
+            <td class="px-6 py-4 text-gray-500">{{ detail.dateDemande }}</td>
+            <td
+              class="px-6 py-4 text-sm font-medium text-center whitespace-nowrap"
+            >
+              <!-- API: PUT /api/detail-commandes/update/{id} -->
+              <button
+                (click)="openModal('detail', detail)"
+                [disabled]="selectedCommande.statuts[0].statut !== 'OUVERTE'"
+                class="text-[#00A88E] hover:underline disabled:text-gray-400 disabled:cursor-not-allowed"
+              >
+                Modifier
+              </button>
+              <span class="mx-2 text-gray-300">|</span>
+              <!-- API: DELETE /api/detail-commandes/delete/{id} -->
+              <button
+                (click)="deleteDetail(detail.idDetailleCommande)"
+                [disabled]="selectedCommande.statuts[0].statut !== 'OUVERTE'"
+                class="text-red-500 hover:underline disabled:text-gray-400 disabled:cursor-not-allowed"
+              >
+                Supprimer
+              </button>
+            </td>
+          </tr>
+          <!-- État si le tableau des détails est vide -->
+          <tr
+            *ngIf="
+              !selectedCommande.details || selectedCommande.details.length === 0
+            "
+          >
+            <td colspan="4" class="px-6 py-12 text-center text-gray-400">
+              Aucune demande client dans cette commande.
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ######### Section Modales ######### -->
+<!-- Modale pour Ajouter/Modifier un détail -->
+<div
+  *ngIf="isDetailModalOpen"
+  class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+  (click)="closeModals()"
+>
+  <div
+    class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl"
+    (click)="$event.stopPropagation()"
+  >
+    <h3 class="text-lg font-bold text-gray-800">Détail de la Demande</h3>
+    <form class="mt-4 space-y-4" #detailForm="ngForm">
+      <div>
+        <label for="idCompte" class="block text-sm font-medium text-gray-600"
+          >ID Compte Client</label
+        >
+        <input
+          type="number"
+          id="idCompte"
+          name="idCompte"
+          [(ngModel)]="currentDetail.idCompte"
+          required
+          class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+      </div>
+      <div>
+        <label for="nbrCarnet" class="block text-sm font-medium text-gray-600"
+          >Nombre de carnets</label
+        >
+        <input
+          type="number"
+          id="nbrCarnet"
+          name="nbrCarnet"
+          [(ngModel)]="currentDetail.nbrCarnet"
+          required
+          class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        />
+      </div>
+    </form>
+    <div class="flex justify-end gap-4 mt-6">
+      <button
+        (click)="closeModals()"
+        class="px-4 py-2 font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100"
+      >
+        Annuler
+      </button>
+      <button
+        (click)="saveDetail()"
+        [disabled]="!detailForm.valid"
+        class="px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] disabled:bg-gray-400 disabled:cursor-not-allowed"
+      >
+        Enregistrer
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Modale pour Changer le Statut -->
+<div
+  *ngIf="isStatusModalOpen"
+  class="fixed inset-0 z-30 flex items-center justify-center bg-black bg-opacity-50"
+  (click)="closeModals()"
+>
+  <div
+    class="w-full max-w-md p-6 bg-white rounded-lg shadow-xl"
+    (click)="$event.stopPropagation()"
+  >
+    <h3 class="text-lg font-bold text-gray-800">
+      Changer le Statut de la Commande
+    </h3>
+    <form class="mt-4 space-y-4">
+      <div>
+        <label
+          for="nouveauStatut"
+          class="block text-sm font-medium text-gray-600"
+          >Nouveau Statut</label
+        >
+        <select
+          id="nouveauStatut"
+          name="nouveauStatut"
+          [(ngModel)]="currentStatus.nouveauStatut"
+          class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        >
+          <option value="VALIDEE">Valider la commande</option>
+          <option value="ENVOYEE">Marquer comme envoyée</option>
+          <option value="ANNULEE">Annuler la commande</option>
+        </select>
+      </div>
+      <div *ngIf="currentStatus.nouveauStatut === 'ANNULEE'">
+        <label for="motif" class="block text-sm font-medium text-gray-600"
+          >Motif (obligatoire si annulation)</label
+        >
+        <textarea
+          id="motif"
+          name="motif"
+          [(ngModel)]="currentStatus.motif"
+          rows="2"
+          class="w-full px-4 py-2 mt-1 text-gray-800 bg-gray-100 border-transparent rounded-lg focus:outline-none focus:ring-2 focus:ring-[#3DE8CA]"
+        ></textarea>
+      </div>
+    </form>
+    <div class="flex justify-end gap-4 mt-6">
+      <button
+        (click)="closeModals()"
+        class="px-4 py-2 font-semibold text-gray-700 bg-white border border-gray-300 rounded-lg hover:bg-gray-100"
+      >
+        Annuler
+      </button>
+      <button
+        (click)="saveStatus()"
+        class="px-4 py-2 font-semibold text-white transition-colors rounded-lg bg-[#3DE8CA] hover:bg-[#00A88E]"
+      >
+        Confirmer
+      </button>
+    </div>
+  </div>
+</div>
